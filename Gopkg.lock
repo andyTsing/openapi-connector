@@ -53,8 +53,8 @@
   revision = "4e2ec36362563d3c617116e91e94ee263d370a25"
 
 [[projects]]
-  branch = "removeInsecure"
-  digest = "1:807fc0fec49a03da6ba93d43c1a7479af87705f2ca85d80bfb8249ab3bcd3e7b"
+  branch = "master"
+  digest = "1:1c221379ad36f9fbbe7d8e46d5e8de8c6884031456b3d1a9535a51ca5961c60b"
   name = "github.com/go-ocf/kit"
   packages = [
     "codec/cbor",
@@ -73,7 +73,7 @@
     "strings",
   ]
   pruneopts = "UT"
-  revision = "b89027daa65275bc354d94d991d67f165d2d2630"
+  revision = "9f48dfe5a187d448b04fc0903e44359cf9bd4fff"
 
 [[projects]]
   branch = "master"
@@ -86,7 +86,7 @@
     "pb",
   ]
   pruneopts = "UT"
-  revision = "c449b1d3f210a0fef9114b2e20d6ec768a2e8f51"
+  revision = "a33905068656b656644231fc7fd9bdd8bf7e6aca"
 
 [[projects]]
   branch = "master"
@@ -469,14 +469,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:f369a12d6d393e0de995fc012983d815dac4c6d13a692bbbf7b6deb5fe4c9ff9"
+  digest = "1:f98730f2c29ef11e0cfb3e9df50bbdda8682e584f00e789e93258874fdb5d12d"
   name = "golang.org/x/sys"
   packages = [
     "unix",
     "windows",
   ]
   pruneopts = "UT"
-  revision = "0a153f010e6963173baba2306531d173aa843137"
+  revision = "98129a5cf4a0207f7e2202f458737deeaca0514a"
 
 [[projects]]
   digest = "1:8d8faad6b12a3a4c819a3f9618cb6ee1fa1cfc33253abeeea8b55336721e3405"

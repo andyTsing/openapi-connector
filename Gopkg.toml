@@ -41,8 +41,8 @@
   branch = "master"
   name = "github.com/go-ocf/go-coap"
 
-[[override]]
-  branch = "removeInsecure"
+[[constraint]]
+  branch = "master"
   name = "github.com/go-ocf/kit"
 
 [[constraint]]
