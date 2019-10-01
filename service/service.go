@@ -6,12 +6,13 @@ import (
 	"net"
 	"net/http"
 
+	"google.golang.org/grpc"
+
 	"github.com/go-ocf/cqrs/eventbus"
 	cqrsEventStore "github.com/go-ocf/cqrs/eventstore"
 	"github.com/go-ocf/kit/log"
-	"github.com/go-ocf/kit/net/grpc"
-	"github.com/go-ocf/kit/security"
 	connectorStore "github.com/go-ocf/openapi-connector/store"
+	"google.golang.org/grpc/credentials"
 
 	pbAS "github.com/go-ocf/authorization/pb"
 	projectionRA "github.com/go-ocf/resource-aggregate/cqrs/projection"
@@ -41,29 +42,36 @@ func (h *loadDeviceSubscriptionsHandler) Handle(ctx context.Context, iter connec
 	return iter.Err()
 }
 
-//New create new Server with provided store and bus
-func New(config Config, resourceEventStore cqrsEventStore.EventStore, resourceSubscriber eventbus.Subscriber, store connectorStore.Store) *Server {
+type DialCertManager = interface {
+	GetClientTLSConfig() tls.Config
+}
 
-	tlsConfig, err := security.NewTLSConfigFromConfiguration(config.TLSConfig, security.VerifyClientCertificate)
-	if err != nil {
-		log.Fatalf("cannot setup tls configuration for service: %v", err)
-	}
-	ln, err := tls.Listen("tcp", config.Addr, tlsConfig)
+type ListenCertManager = interface {
+	GetServerTLSConfig() tls.Config
+}
+
+//New create new Server with provided store and bus
+func New(config Config, dialCertManager DialCertManager, listenCertManager ListenCertManager, resourceEventStore cqrsEventStore.EventStore, resourceSubscriber eventbus.Subscriber, store connectorStore.Store) *Server {
+	dialTLSConfig := dialCertManager.GetClientTLSConfig()
+	listenTLSConfig := listenCertManager.GetServerTLSConfig()
+	listenTLSConfig.ClientAuth = tls.NoClientCert
+
+	ln, err := tls.Listen("tcp", config.Addr, &listenTLSConfig)
 	if err != nil {
 		log.Fatalf("cannot listen and serve: %v", err)
 	}
 
-	raConn, err := grpc.NewClientConn(config.ResourceAggregateHost, config.TLSConfig)
+	raConn, err := grpc.Dial(config.ResourceAggregateAddr, grpc.WithTransportCredentials(credentials.NewTLS(&dialTLSConfig)))
 	if err != nil {
 		log.Fatalf("cannot create server: %v", err)
 	}
 	raClient := pbRA.NewResourceAggregateClient(raConn)
 
-	asConn, err := grpc.NewClientConn(config.AuthHost, config.TLSConfig)
+	authConn, err := grpc.Dial(config.AuthServerAddr, grpc.WithTransportCredentials(credentials.NewTLS(&dialTLSConfig)))
 	if err != nil {
 		log.Fatalf("cannot create server: %v", err)
 	}
-	asClient := pbAS.NewAuthorizationServiceClient(asConn)
+	authClient := pbAS.NewAuthorizationServiceClient(authConn)
 
 	ctx := context.Background()
 
@@ -85,7 +93,7 @@ func New(config Config, resourceEventStore cqrsEventStore.EventStore, resourceSu
 		log.Fatalf("cannot create server: %v", err)
 	}
 
-	requestHandler := NewRequestHandler(config.OriginCloud, config.OAuthCallback, NewSubscriptionManager(config.EventsURL, asClient, raClient, store, resourceProjection), asClient, raClient, resourceProjection, store)
+	requestHandler := NewRequestHandler(config.OriginCloud, config.OAuthCallback, NewSubscriptionManager(config.EventsURL, authClient, raClient, store, resourceProjection), authClient, raClient, resourceProjection, store)
 
 	server := Server{
 		server:  NewHTTP(requestHandler),

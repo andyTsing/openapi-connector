@@ -8,6 +8,7 @@ import (
 	"github.com/go-ocf/kit/cqrs/eventbus/nats"
 	"github.com/go-ocf/kit/cqrs/eventstore/mongodb"
 	"github.com/go-ocf/kit/log"
+	"github.com/go-ocf/kit/security/acme"
 	"github.com/go-ocf/openapi-connector/service"
 	storeMongodb "github.com/go-ocf/openapi-connector/store/mongodb"
 	"github.com/panjf2000/ants"
@@ -18,7 +19,9 @@ type Config struct {
 	MongoDB           mongodb.Config
 	Nats              nats.Config
 	Service           service.Config
-	GoRoutinePoolSize int `envconfig:"GOROUTINE_POOL_SIZE" default:"16"`
+	GoRoutinePoolSize int         `envconfig:"GOROUTINE_POOL_SIZE" default:"16"`
+	DialAcme          acme.Config `envconfig:"DIAL_ACME"`
+	ListenAcme        acme.Config `envconfig:"LISTEN_ACME"`
 	StoreMongoDB      storeMongodb.Config
 }
 
@@ -52,6 +55,14 @@ func Init(config Config) (*service.Server, error) {
 	}
 
 	log.Info(config.String())
+	dialCertManager, err := acme.NewCertManagerFromConfiguration(config.DialAcme)
+	if err != nil {
+		return nil, fmt.Errorf("cannot create dial cert manager %v", err)
+	}
+	listenCertManager, err := acme.NewCertManagerFromConfiguration(config.ListenAcme)
+	if err != nil {
+		return nil, fmt.Errorf("cannot create listen cert manager %v", err)
+	}
 
-	return service.New(config.Service, resourceEventstore, resourceSubscriber, store), nil
+	return service.New(config.Service, dialCertManager, listenCertManager, resourceEventstore, resourceSubscriber, store), nil
 }

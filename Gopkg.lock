@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  digest = "1:c1100fc71e23b6a32b2c68a5202a848fd13811d5a10b12edb8019c3667d1cd9a"
+  name = "github.com/cenkalti/backoff"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "4b4cebaf850ec58f1bb1fec5bdebdf8501c2bc3f"
+  version = "v3.0.0"
+
+[[projects]]
   digest = "1:ffe9824d294da03b391f44e1ae8281281b4afc1bdaa9588c9097785e3af10cec"
   name = "github.com/davecgh/go-spew"
   packages = ["spew"]
@@ -18,16 +26,41 @@
   version = "v3.2.0"
 
 [[projects]]
+  digest = "1:ac5fbf25b47981191d0f453c0a74d03cb131c2b20c34ba44569f1ad5fd58a9f5"
+  name = "github.com/go-acme/lego"
+  packages = [
+    "acme",
+    "acme/api",
+    "acme/api/internal/nonces",
+    "acme/api/internal/secure",
+    "acme/api/internal/sender",
+    "certcrypto",
+    "certificate",
+    "challenge",
+    "challenge/dns01",
+    "challenge/http01",
+    "challenge/resolver",
+    "challenge/tlsalpn01",
+    "lego",
+    "log",
+    "platform/wait",
+    "registration",
+  ]
+  pruneopts = "UT"
+  revision = "295dd66f2aa549685e3d6b95c1813881a7807158"
+  version = "v2.7.2"
+
+[[projects]]
   branch = "master"
   digest = "1:1f8d964dd2323cbc8dcdbf3a2f5d9789b02919a3f785e1c50f59834c4ec0b479"
   name = "github.com/go-ocf/authorization"
   packages = ["pb"]
   pruneopts = "UT"
-  revision = "34192ff347ecf329caa7656bcefe004487908766"
+  revision = "5cea6496629340d6db8692197c35b7a09d5d777e"
 
 [[projects]]
   branch = "master"
-  digest = "1:396e9c35709a2e266efe6c841468e076e41c53ce8ce819d35309378d9dac93d0"
+  digest = "1:75437b5c50a3863909610d36a3f565e0e7f6705798b43cfc0864b5d4d1fd69fb"
   name = "github.com/go-ocf/cqrs"
   packages = [
     ".",
@@ -39,7 +72,7 @@
     "protobuf/eventbus",
   ]
   pruneopts = "UT"
-  revision = "3c501311326cc4549fceb9c5af6dd97344dc89ea"
+  revision = "fc3dcec96e062057407b23c9e47c63542d9922fa"
 
 [[projects]]
   branch = "master"
@@ -54,7 +87,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:1c221379ad36f9fbbe7d8e46d5e8de8c6884031456b3d1a9535a51ca5961c60b"
+  digest = "1:83b7dab991307c3371983dc9335ea0114f05a903c80e0089d25ed1a512c95be5"
   name = "github.com/go-ocf/kit"
   packages = [
     "codec/cbor",
@@ -69,11 +102,12 @@
     "net",
     "net/grpc",
     "security",
+    "security/acme",
     "security/jwt",
     "strings",
   ]
   pruneopts = "UT"
-  revision = "9f48dfe5a187d448b04fc0903e44359cf9bd4fff"
+  revision = "9e770ee84847586e1cf9f7485a42b23ff07c0bae"
 
 [[projects]]
   branch = "master"
@@ -86,7 +120,7 @@
     "pb",
   ]
   pruneopts = "UT"
-  revision = "a33905068656b656644231fc7fd9bdd8bf7e6aca"
+  revision = "f5aade86d89adf79d681d01eb50c12c6627c9564"
 
 [[projects]]
   branch = "master"
@@ -97,7 +131,7 @@
     "schema/cloud",
   ]
   pruneopts = "UT"
-  revision = "867fd8b642ee8ed5729346a3330aff567f074122"
+  revision = "aa0190036e50624a9da1a2d3e1a0bad00a4188e8"
 
 [[projects]]
   digest = "1:586ea76dbd0374d6fb649a91d70d652b7fe0ccffb8910a77468e7702e7901f3d"
@@ -211,6 +245,14 @@
   version = "v0.9.0"
 
 [[projects]]
+  digest = "1:d90214c9ed33d91b55cf4fa483b1c9c65ce7ad0ed00b390f8ee2f801ad737302"
+  name = "github.com/miekg/dns"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "1208fbdde0ad3326de82ac4a8f53058d480ed228"
+  version = "v1.1.19"
+
+[[projects]]
   digest = "1:2ca73053216eb11c8eea2855c8099ad82773638522f91cc0542ec9759163ff3c"
   name = "github.com/nats-io/go-nats"
   packages = [
@@ -318,8 +360,7 @@
   version = "v1.0.0"
 
 [[projects]]
-  branch = "master"
-  digest = "1:56b897e231882e1a4a7cebdd7e1a1175eb9a99876241f7036612aa6aa4d0b143"
+  digest = "1:15ad8a80098fcc7a194b9db6b26d74072a852e4faa957848c8118193d3c69230"
   name = "github.com/valyala/fasthttp"
   packages = [
     ".",
@@ -327,7 +368,8 @@
     "stackless",
   ]
   pruneopts = "UT"
-  revision = "be93fbd21b9cb2641736175bb76c7d929079141c"
+  revision = "e5f51c11919d4f66400334047b897ef0a94c6f3c"
+  version = "v20180529"
 
 [[projects]]
   branch = "master"
@@ -391,12 +433,12 @@
   version = "v1.4.0"
 
 [[projects]]
-  digest = "1:60bf2a5e347af463c42ed31a493d817f8a72f102543060ed992754e689805d1a"
+  digest = "1:ed14edb4b5ec8eff801b1e8217ffaf021729c5a1dee9d940af5bb3302ab7297d"
   name = "go.uber.org/multierr"
   packages = ["."]
   pruneopts = "UT"
-  revision = "3c4937480c32f4c13a875a1829af76c98ca3d40a"
-  version = "v1.1.0"
+  revision = "71e610a0e48dbda460d9c18adca8b5f2de04a7c1"
+  version = "v1.2.0"
 
 [[projects]]
   digest = "1:676160e6a4722b08e0e26b11521d575c2cb2b6f0c679e1ee6178c5d8dee51e5e"
@@ -415,20 +457,21 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:938dbd252cbf4a674b6fca2b8ac54a9b3cb21090b8d0b5ab73544cdc360cd01f"
+  digest = "1:450bf4f8f757bb9cd7228ca017011da5e3e7352c95402d6173c0e1c0c51ab259"
   name = "golang.org/x/crypto"
   packages = [
     "curve25519",
     "ed25519",
     "ed25519/internal/edwards25519",
+    "ocsp",
     "pbkdf2",
   ]
   pruneopts = "UT"
-  revision = "9ee001bba392397c76f100a2d5b13afc86f167f1"
+  revision = "f9e2070545dcd4128a854a97ddf10fbfc3c4b6e4"
 
 [[projects]]
   branch = "master"
-  digest = "1:b1ab585ad3c43094d6d66bf19f12961b6f5775c618ce1f32216a6baae5af4d5d"
+  digest = "1:492f84ac2f55e56c49532362cf5cf7c903ea17af232241c8ccd3e4382263cac2"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -446,7 +489,7 @@
     "trace",
   ]
   pruneopts = "UT"
-  revision = "aa69164e4478b84860dc6769c710c699c67058a3"
+  revision = "c5a3c61f89f3ed696ec36b629ef1b97541165225"
 
 [[projects]]
   branch = "master"
@@ -469,14 +512,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:f98730f2c29ef11e0cfb3e9df50bbdda8682e584f00e789e93258874fdb5d12d"
+  digest = "1:7affd946f0fb4ed0857161b658bac4ca7fed352b6db81fb344a255816ef10d65"
   name = "golang.org/x/sys"
   packages = [
     "unix",
     "windows",
   ]
   pruneopts = "UT"
-  revision = "98129a5cf4a0207f7e2202f458737deeaca0514a"
+  revision = "bb3f8db39f24d596342144141f45701e604f5aed"
 
 [[projects]]
   digest = "1:8d8faad6b12a3a4c819a3f9618cb6ee1fa1cfc33253abeeea8b55336721e3405"
@@ -516,8 +559,8 @@
     "urlfetch",
   ]
   pruneopts = "UT"
-  revision = "c71d63e301d75423acb410203c747cad31e9a5e7"
-  version = "v1.6.3"
+  revision = "bddb1f54ecfd64b1350fd2dd897fa11d426632bc"
+  version = "v1.6.4"
 
 [[projects]]
   branch = "master"
@@ -525,10 +568,10 @@
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
   pruneopts = "UT"
-  revision = "f660b865573183437d2d868f703fe88bb8af0b55"
+  revision = "20e1ac93f88cf06d2b1defb90b9e9e126c7dfff6"
 
 [[projects]]
-  digest = "1:2e18183989c76d073e9088f1a56f8b1c46ca920b74b529a50c2d7e5877ff18ac"
+  digest = "1:6cd77d0b616d2dcebd363dfecba593f27b0151fc82cdb5fbfb96c5a7cfbc95b5"
   name = "google.golang.org/grpc"
   packages = [
     ".",
@@ -566,16 +609,28 @@
     "tap",
   ]
   pruneopts = "UT"
-  revision = "39e8a7b072a67ca2a75f57fa2e0d50995f5b22f6"
-  version = "v1.23.1"
+  revision = "f6d0f9ee430895e87ef1ceb5ac8f39725bafceef"
+  version = "v1.24.0"
 
 [[projects]]
-  digest = "1:4d2e5a73dc1500038e504a8d78b986630e3626dc027bc030ba5c75da257cdb96"
+  digest = "1:8c05919580be8a5be668709d7e5a69d5cd19b8ee9f23d62ce5b10d3457bf6a13"
+  name = "gopkg.in/square/go-jose.v2"
+  packages = [
+    ".",
+    "cipher",
+    "json",
+  ]
+  pruneopts = "UT"
+  revision = "730df5f748271903322feb182be83b43ebbbe27d"
+  version = "v2.3.1"
+
+[[projects]]
+  digest = "1:1033856ca84153217fda9f527e1c02e11b636e28ad2ab19f2ea4a06e4abbe8e1"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
   pruneopts = "UT"
-  revision = "51d6538a90f86fe93ac480b35f37b2be17fef232"
-  version = "v2.2.2"
+  revision = "bb4e33bf68bf89cad44d386192cbed201f35b241"
+  version = "v2.2.3"
 
 [solve-meta]
   analyzer-name = "dep"
@@ -595,7 +650,7 @@
     "github.com/go-ocf/kit/http",
     "github.com/go-ocf/kit/log",
     "github.com/go-ocf/kit/net/grpc",
-    "github.com/go-ocf/kit/security",
+    "github.com/go-ocf/kit/security/acme",
     "github.com/go-ocf/resource-aggregate/cqrs",
     "github.com/go-ocf/resource-aggregate/cqrs/events",
     "github.com/go-ocf/resource-aggregate/cqrs/projection",
@@ -614,6 +669,8 @@
     "go.mongodb.org/mongo-driver/mongo/options",
     "go.mongodb.org/mongo-driver/mongo/readpref",
     "golang.org/x/oauth2",
+    "google.golang.org/grpc",
+    "google.golang.org/grpc/credentials",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

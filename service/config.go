@@ -12,8 +12,8 @@ import (
 //Config represent application configuration
 type Config struct {
 	grpc.Config
-	AuthHost              string `envconfig:"AUTH_HOST"  default:"127.0.0.1:7000"`
-	ResourceAggregateHost string `envconfig:"RESOURCE_AGGREGATE_HOST"  default:"127.0.0.1:9083"`
+	AuthServerAddr        string `envconfig:"AUTH_SERVER_ADDRESS" default:"127.0.0.1:9100"`
+	ResourceAggregateAddr string `envconfig:"RESOURCE_AGGREGATE_ADDRESS"  default:"127.0.0.1:9100"`
 	FQDN                  string `envconfig:"FQDN" default:"openapi.pluggedin.cloud"`
 	OAuthCallback         string `envconfig:"OAUTH_CALLBACK" required:"true"`
 	EventsURL             string `envconfig:"EVENTS_URL" required:"true"`
