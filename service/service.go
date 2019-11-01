@@ -53,12 +53,10 @@ type ListenCertManager = interface {
 //New create new Server with provided store and bus
 func New(config Config, dialCertManager DialCertManager, listenCertManager ListenCertManager, resourceEventStore cqrsEventStore.EventStore, resourceSubscriber eventbus.Subscriber, store connectorStore.Store) *Server {
 	dialTLSConfig := dialCertManager.GetClientTLSConfig()
-	/*
-		listenTLSConfig := listenCertManager.GetServerTLSConfig()
-		listenTLSConfig.ClientAuth = tls.NoClientCert
-		ln, err := tls.Listen("tcp", config.Addr, &listenTLSConfig)
-	*/
-	ln, err := net.Listen("tcp", config.Addr)
+	listenTLSConfig := listenCertManager.GetServerTLSConfig()
+	listenTLSConfig.ClientAuth = tls.NoClientCert
+
+	ln, err := tls.Listen("tcp", config.Addr, &listenTLSConfig)
 	if err != nil {
 		log.Fatalf("cannot listen and serve: %v", err)
 	}
